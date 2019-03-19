@@ -1,8 +1,14 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
-import {reducer as toastrReducer} from 'react-redux-toastr'
+import { routerReducer } from 'react-router-redux';
+import thunk from "redux-thunk";
+import {SEO} from './seo';
+import { reducer as reduxAsyncConnect } from 'redux-connect';
+
 let rootReducer = combineReducers({
-    toastr: toastrReducer
+  reduxAsyncConnect,
+  routing: routerReducer,
+  SEO
 });
 
-const store = createStore(reducers, applyMiddleware(thunk));
+const store = createStore(rootReducer, applyMiddleware(thunk));
 export {store, rootReducer};
