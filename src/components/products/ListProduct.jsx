@@ -18,6 +18,16 @@ class ListContainer extends Component {
 
         }
         this.onSetState   = this.onSetState.bind(this);
+        this.onDeleteProduct   = this.onDeleteProduct.bind(this);
+    }
+
+    s4 = () => {
+        return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+    }
+
+    generateId = () => {
+        return this.s4() + this.s4() + '-' + this.s4() + this.s4() + '-' + 
+            this.s4() + this.s4() + '-' + this.s4() + this.s4() + '-' + this.s4() + this.s4();
     }
     
     componentDidMount() {
@@ -39,7 +49,7 @@ class ListContainer extends Component {
         if ( typeof this.state.products === 'object' && this.state.products.length && this.state.isActive ) {
             var elements = this.state.products.map( (product, index) => {
                 return (
-                    <Item key = { index } product = { product }/>
+                    <Item key = { index } product = { product } onDeleteProduct={this.onDeleteProduct}/>
                 )    
             });
         } else {
@@ -47,15 +57,6 @@ class ListContainer extends Component {
         }
 
         return elements;
-    }
-
-    s4() {
-        return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-    }
-
-    generateId() {
-        return this.s4() + this.s4() + '-' + this.s4() + this.s4() + '-' + 
-            this.s4() + this.s4() + '-' + this.s4() + this.s4() + '-' + this.s4() + this.s4();
     }
 
     onGenerateProduct() {
@@ -80,6 +81,19 @@ class ListContainer extends Component {
             }
         ];
 
+        localStorage.setItem('products', JSON.stringify(products));
+        this.setState({
+            products: JSON.parse(localStorage.getItem('products'))
+        });
+    }
+
+    onDeleteProduct(id) {
+        let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
+
+        products = products.filter((product) => {
+            return product.id != id
+        })
+        
         localStorage.setItem('products', JSON.stringify(products));
         this.setState({
             products: JSON.parse(localStorage.getItem('products'))
