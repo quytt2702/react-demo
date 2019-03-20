@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import {Button} from "react-bootstrap";
+import {toastr} from "react-redux-toastr";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 class Item extends Component {
     constructor(props) {
@@ -8,7 +11,26 @@ class Item extends Component {
     }
 
     onDeleteProduct() {
-        this.props.onDeleteProduct(this.props.product.id);
+        const options = {
+            title: 'Bạn chắc chắn muốn xóa!',
+            buttons: [
+              {
+                label: 'Đồng ý',
+                onClick: () => {
+                    this.props.onDeleteProduct(this.props.product.id);
+                    toastr.success('Success!' ,'Xóa thành công')
+                }
+              },
+              {
+                label: 'Hủy bỏ',
+                onClick: () => toastr.warning('Hủy xóa', 'CANCEL: clicked')
+              }
+            ],
+            closeOnEscape: false,
+            closeOnClickOutside: true,
+          };
+          
+          confirmAlert(options);
     }
 
     render () {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Item from "./Item";
 import {Container,Row,Col,Button,Table} from "react-bootstrap";
-import {toastr} from "react-redux-toastr";
+import {Link} from 'react-router-dom';
 
 class ListContainer extends Component {
     constructor (props) {
@@ -63,20 +63,20 @@ class ListContainer extends Component {
         let products = [
             {
                 id: this.generateId(),
-                vertion: 'xs mart',
-                name: 'Iphone',
+                vertion: 'Iphone',
+                name: 'xs mart',
                 price: '32.000.000 đ',
             },
             {
                 id: this.generateId(),
-                vertion: 's10',
-                name: 'Samsung',
+                vertion: 'Samsung',
+                name: 's10',
                 price: '15.000.000 đ',
             },
             {
                 id: this.generateId(),
-                vertion: 'f7s',
-                name: 'Oppo',
+                vertion: 'Oppo',
+                name: 'f7s',
                 price: '20.000.000 đ',
             }
         ];
@@ -123,7 +123,7 @@ class ListContainer extends Component {
                                 </Table>
 
                                 <Button variant="warning" onClick={ this.onSetState }>Trạng Thái: {this.state.isActive ? 'Hoạt động' : 'Không hoạt động'}</Button>
-                                <Button variant="info" className="ml-5">Thêm sản Phẩm</Button>
+                                <Link to="/products/create" className="ml-5 btn btn-success">Thêm sản Phẩm</Link>
                                 <Button variant="danger" className="ml-5" onClick={ this.onGenerateProduct.bind(this) }>Generate 3 Products</Button>
                             </Row>
                         </Col>

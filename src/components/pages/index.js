@@ -1,5 +1,5 @@
 import HomePage from './HomePage.jsx';
 import Login from './Login.jsx';
-import {ListProduct} from './products';
+import {ListProduct, CreateProduct} from './products';
 
-export {HomePage, Login, ListProduct}
+export {HomePage, Login, ListProduct, CreateProduct}

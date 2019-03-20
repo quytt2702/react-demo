@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import {ListProduct as Product} from 'components/products';
 import {MainLayout} from 'components/layouts';
 

@@ -4896,6 +4896,11 @@ react-bootstrap@^1.0.0-beta.5:
     uncontrollable "^6.0.0"
     warning "^4.0.1"
 
+react-confirm-alert@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/react-confirm-alert/-/react-confirm-alert-2.4.0.tgz#347e9d007eff9fed128bc171460228346c4ae1f1"
+  integrity sha512-1rQR6TSFlchKPcNMlkH3G5HdMwBkjDRfe+yNl+bpu3KT0vygjBbe+lt4WtrwTNDv1NQyZ+mlnZOOMda3cN1Ymg==
+
 react-context-toolbox@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/react-context-toolbox/-/react-context-toolbox-2.0.2.tgz#35637287cb23f801e6ed802c2bb7a97e1f04e3fb"
