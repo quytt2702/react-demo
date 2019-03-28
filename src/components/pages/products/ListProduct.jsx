@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
-import {ListProduct as Product} from 'components/products';
+import {ListProductContainer} from 'components/products';
 import {MainLayout} from 'components/layouts';
 
 class ListProduct extends Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
   }
 
   render() {
     return (
       <MainLayout>
-        <Product/>
+        <ListProductContainer/>
       </MainLayout>
     );
   }

@@ -9,27 +9,10 @@ class CreateProduct extends Component {
     super(props, context);
   }
 
-  fnSubmit(data) {
-      let products = localStorage.getItem('products') ? JSON.parse(localStorage.getItem('products')) : [];
-
-      let checkdata = products.find(function (product) {
-          return product.name == data.name
-      });
-      if (checkdata) {
-          toastr.error('name is exists');
-          return;
-      }
-
-      products.push(data);
-      localStorage.setItem('products', JSON.stringify(products));
-      toastr.success('Thành công!', 'Lưu Thành Công');
-      this.props.history.push('/products');
-  }
-
   render() {
     return (
       <MainLayout>
-        <CreateProductForm onAddProduct={this.fnSubmit.bind(this)}/>
+        <CreateProductForm/>
       </MainLayout>
     );
   }

@@ -1,4 +1,3 @@
-import {logout} from './logout';
-import {login, getUserInfo} from './login';
+import {listProduct, addProduct, deleteProduct, generateProduct} from './products';
 
-export {login, logout, getUserInfo};
+export {listProduct, addProduct, deleteProduct, generateProduct};

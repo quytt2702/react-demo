@@ -3,6 +3,9 @@ import {Button} from "react-bootstrap";
 import {toastr} from "react-redux-toastr";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import { connect } from 'react-redux';
+import * as action from 'base/actions';
+import {withRouter} from 'react-router-dom';
 
 class Item extends Component {
     constructor(props) {
@@ -17,7 +20,7 @@ class Item extends Component {
               {
                 label: 'Đồng ý',
                 onClick: () => {
-                    this.props.onDeleteProduct(this.props.product.id);
+                    this.props.onDelete(this.props.product.id);
                     toastr.success('Success!' ,'Xóa thành công')
                 }
               },
@@ -49,4 +52,18 @@ class Item extends Component {
     }
 }
 
-export default Item;
+const mapStateToProps = state => {
+    return {
+
+    }
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onDelete: (id) => {
+            dispatch(action.deleteProduct(id));
+        }
+    }
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Item));

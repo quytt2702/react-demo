@@ -1,4 +1,4 @@
-import ListProduct from "./ListProduct.jsx";
+import ListProductContainer from "./ListProductContainer.jsx";
 import CreateProductForm from "./CreateProductForm.jsx";
 
-export {ListProduct, CreateProductForm};
+export {ListProductContainer, CreateProductForm};

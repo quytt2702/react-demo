@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import {Container,Row,Col,Button} from "react-bootstrap";
-import {toastr} from "react-redux-toastr";
+import  {Container,Row,Col,Button } from "react-bootstrap";
+import { toastr } from "react-redux-toastr";
+import { connect } from 'react-redux';
+import * as action from 'base/actions';
+import {withRouter} from 'react-router-dom';
 
 class CreateProductForm extends Component {
     constructor (props) {
@@ -12,7 +15,7 @@ class CreateProductForm extends Component {
             price: '',
             vertion: ''
         }
-        this.onAddProduct = this.onAddProduct.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     } 
     s4 = () => {
         return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
@@ -23,7 +26,7 @@ class CreateProductForm extends Component {
             this.s4() + this.s4() + '-' + this.s4() + this.s4() + '-' + this.s4() + this.s4();
     }
 
-    async onAddProduct() {
+    async onSubmit() {
         await this.setState({
             id: this.generateId()
         });
@@ -42,8 +45,9 @@ class CreateProductForm extends Component {
             }
             return;
         }
-
-        this.props.onAddProduct(this.state);
+        this.props.onAddProduct(this.state)
+        toastr.success('Thành công!', 'Lưu Thành Công');
+        this.props.history.push('/products')
     }
 
     onChangeHandle(name, e) {
@@ -54,6 +58,10 @@ class CreateProductForm extends Component {
         this.setState({
               [name]: value
         });
+    }
+
+    onCancel() {
+        this.props.history.push('/products');
     }
 
     render() {
@@ -112,7 +120,7 @@ class CreateProductForm extends Component {
                                         </select>
                                     </div>
                                 </div>
-                                <Button variant="primary" onClick={ this.onAddProduct }>Save</Button>
+                                <Button variant="primary" onClick={ this.onSubmit }>Save</Button>
                             </div>
                         </Col>
                     </Row>
@@ -122,4 +130,18 @@ class CreateProductForm extends Component {
     }
 }
 
-export default CreateProductForm;
+const mapStateToProps = state => {
+    return {
+
+    }
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onAddProduct: (product) => {
+            dispatch(action.addProduct(product));
+        }
+    }
+};
+
+export default withRouter(connect(null, mapDispatchToProps)(CreateProductForm));
