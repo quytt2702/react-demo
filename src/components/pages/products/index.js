@@ -1,4 +1,4 @@
-import ListProduct from './ListProduct';
-import CreateProduct from './CreateProduct';
+import ListProductContainer from './ListProductContainer';
+import CreateProductContainer from './CreateProductContainer';
 
-export {ListProduct, CreateProduct}
+export {ListProductContainer, CreateProductContainer}

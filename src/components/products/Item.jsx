@@ -1,26 +1,23 @@
 import React, { Component } from "react";
-import {Button} from "react-bootstrap";
-import {toastr} from "react-redux-toastr";
+import { Button } from "react-bootstrap";
+import { toastr } from "react-redux-toastr";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import { connect } from 'react-redux';
-import * as action from 'base/actions';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class Item extends Component {
     constructor(props) {
         super(props);
-        this.onDeleteProduct = this.onDeleteProduct.bind(this);
     }
 
-    onDeleteProduct() {
+    onDelete(id) {
         const options = {
             title: 'Bạn chắc chắn muốn xóa!',
             buttons: [
               {
                 label: 'Đồng ý',
                 onClick: () => {
-                    this.props.onDelete(this.props.product.id);
+                    this.props.onDeleteProduct(id);
                     toastr.success('Success!' ,'Xóa thành công')
                 }
               },
@@ -37,33 +34,21 @@ class Item extends Component {
     }
 
     render () {
+        let product = this.props.product;
+
         return (                
             <tr>
-                <td>{ this.props.product.id }</td>
-                <td>{ this.props.product.vertion }</td>
-                <td>{ this.props.product.name }</td>
-                <td><span className="label label-success">{ this.props.product.price }</span></td>
+                <td>{ product.id }</td>
+                <td>{ product.vertion }</td>
+                <td>{ product.name }</td>
+                <td><span className="label label-success">{ product.price }</span></td>
                 <td>
                     <Button className="btn btn-primary mr-2">Chi tiết sản phẩm</Button>
-                    <Button variant="danger" className="mr-2" onClick={ this.onDeleteProduct }>Xóa</Button>
+                    <Button variant="danger" className="mr-2" onClick={ this.onDelete.bind(this, product.id) }>Xóa</Button>
                 </td>
             </tr>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return {
-
-    }
-};
-
-const mapDispatchToProps = (dispatch, props) => {
-    return {
-        onDelete: (id) => {
-            dispatch(action.deleteProduct(id));
-        }
-    }
-};
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Item));
+export default withRouter(Item);
