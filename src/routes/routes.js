@@ -1,5 +1,5 @@
 import App from 'src/app';
-import {HomePage, Login, ListProductContainer, CreateProductContainer, Demo} from "components/pages";
+import {HomePage, Login, ListProductContainer, CreateProductContainer, NotFound} from "components/pages";
 
 
 const routes = [
@@ -10,7 +10,8 @@ const routes = [
       { path: '/login', exact: true, component: Login },
       { path: '/products', exact: true, component: ListProductContainer },
       { path: '/products/create', exact: true, component: CreateProductContainer },
-      { path: '/demo', exact: true, component: Demo }
+      { component: NotFound },
+      { path: '/demo', component: NotFound },
     ]
   }
 ];

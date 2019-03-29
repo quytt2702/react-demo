@@ -5,6 +5,7 @@ import {MainLayout} from 'components/layouts';
 import { toastr } from "react-redux-toastr";
 import { connect } from 'react-redux';
 import * as action from 'base/actions';
+import { FormGroup } from 'react-bootstrap';
 
 class CreateProductContainer extends Component {
   constructor(props, context) {
